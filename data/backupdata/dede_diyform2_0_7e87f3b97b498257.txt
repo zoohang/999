@@ -1,0 +1,2 @@
+INSERT INTO `dede_diyform2` VALUES('1','0','','','','','','','','','');
+INSERT INTO `dede_diyform2` VALUES('2','0','四川','阿坝','黑水','慈坝乡','你没','12306@qq.com','15854201234','this is a address \r\nthis is a address this is a address \r\nthis is a address \r\nthis is a address ','this is a fault description ');

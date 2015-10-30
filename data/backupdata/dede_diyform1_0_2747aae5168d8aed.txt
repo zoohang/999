@@ -1,0 +1,4 @@
+INSERT INTO `dede_diyform1` VALUES('1','0','你好','你好','123456','123456','123@163.com','123456','123456','123456');
+INSERT INTO `dede_diyform1` VALUES('2','0','test','test','123456123','13456789','132@1320.com','test\r\ntest\r\ntest','test\r\ntest\r\ntest','testtest\r\ntest');
+INSERT INTO `dede_diyform1` VALUES('3','0','test','test','123456123','13456789','132@1320.com','test\r\ntest\r\ntest','test\r\ntest\r\ntest','testtest\r\ntest');
+INSERT INTO `dede_diyform1` VALUES('4','0','test','test','123456123','13456789','132@1320.com','test\r\ntest\r\ntest','test\r\ntest\r\ntest','');
