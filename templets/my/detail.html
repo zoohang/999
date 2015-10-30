@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/swiper.min.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script type="text/javascript" src="js/jquery1.42.min.js"></script>
+	<script src="js/jquery.superslide.2.1.1.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery.raty.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+</head>
+<body>
+	
+	<div class="w1142 header">
+		<div class="top logo">
+			<a href="./"><img src="images/index_03.png" alt=""></a>
+		</div>
+		<div class="top nav">
+			<div class="nav_list">
+				<a href="./"><div class="nav_one cur">首页</div></a>
+				<a href=""><div class="nav_one">商城</div></a>
+				<a href=""><div class="nav_one">论坛</div></a>
+				<a href=""><div class="nav_one">报价</div></a>
+				<a href=""><div class="nav_one">经销商</div></a>
+				<a href=""><div class="nav_one">关于我们</div></a>
+			</div>
+			
+		</div>
+		<div class="top">
+			<img src="images/index_11.png" alt="">
+		</div>
+		<div class="top word_time noright">
+			Saturday - Thursday
+			[10:00AM - 8:00PM]
+		</div>
+		<div class="top search">
+			<input type="text" name="" placeholder="单号查询">
+			<img src="images/index_06.png" alt="">
+		</div>
+		<div class="top lang noright">
+			<img src="images/index_08.png" alt="">
+		</div>
+	</div>
+
+	<div class="w1366">
+
+		<div class="w1142 detail">
+			<div class="service_title">导航目录</div>
+			<div class="tab" id="tab">
+				<div class="tabList">
+					<ul>
+						<li class="cur">网点</li>
+						<li>提交订单</li>
+						<li>单号查询</li>
+						<li>经销商登陆</li>
+						<li id="noright">经销商申请</li>
+					</ul>
+				</div>
+
+				<div class="tabCon">
+					<div class="tab_div cur">
+            <img src="images/google_map.png">     
+          </div>
+					<div class="tab_div">
+						<div class="xiadan">
+							<div class="xiadan_baojia">报价：<span>300AED</span></div>
+							<div class="select_group">
+								<div class="select_group_row">
+									<label for="TextInputname">选择设备类型：</label>
+								  <select class="form-control input-lg">
+									  <option>手机</option>
+									  <option>笔记本</option>
+									  <option>平板</option>
+									  <option>存储介质</option>
+									  <option>其他</option>
+									</select>
+								</div>
+								<div class="select_group_row">
+									<label for="TextInputname">选择设备品牌：</label>
+								  <select class="form-control input-lg">
+									  <option>手机</option>
+									  <option>笔记本</option>
+									  <option>平板</option>
+									  <option>存储介质</option>
+									  <option>其他</option>
+									</select>
+								</div>
+								<div class="select_group_row">
+									<label for="TextInputname">选择设备型号：</label>
+								  <select class="form-control input-lg">
+									  <option>手机</option>
+									  <option>笔记本</option>
+									  <option>平板</option>
+									  <option>存储介质</option>
+									  <option>其他</option>
+									</select>
+								</div>
+								<div class="select_group_row">
+									<label for="TextInputname">选择设备故障：</label>
+								  <select class="form-control input-lg">
+									  <option>手机</option>
+									  <option>笔记本</option>
+									  <option>平板</option>
+									  <option>存储介质</option>
+									  <option>其他</option>
+									</select>
+								</div>
+							</div>
+							<div class="xiadan_userinfo">
+								<div class="xiadan_userinfo_row">
+									<label>联系信息：</label><br>	
+									<div class="form-group">
+								    <label for="inputPassword" class="col-sm-3 control-label">Username：</label>
+								    <div class="col-sm-9">
+								      <input type="password" class="form-control" id="inputPassword" placeholder="username">
+								    </div>
+								  </div>
+									<div class="form-group">
+								    <label for="inputPassword" class="col-sm-3 control-label">Email：</label>
+								    <div class="col-sm-9">
+								      <input type="password" class="form-control" id="inputPassword" placeholder="email">
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <label for="inputPassword" class="col-sm-3 control-label">Number：</label>
+								    <div class="col-sm-9">
+								      <input type="password" class="form-control" id="inputPassword" placeholder="phone number">
+								    </div>
+								  </div>
+								</div>
+								<div class="xiadan_userinfo_row">
+									<label for="TextInputname">联系地址：</label>
+									<textarea class="form-control" rows="2"></textarea>
+								</div>
+								<div class="xiadan_userinfo_row">
+									<label for="TextInputname">故障描述：</label>
+									<textarea class="form-control" rows="2"></textarea>
+								</div>
+							</div>
+							<input type="submit" class="btn btn-default business_btn" value="确认提交">
+						</div>
+					</div>
+					<div class="tab_div">
+						<div class="order_check">
+							<div class="check_logo"><img src="images/index_03.png"></div>
+							<div class="input_grounp">
+								<div class="input_tips">
+									<p class="input_tips_lg">查询</p>
+									<p class="input_tips_sm">输入单号</p>
+								</div>
+								<input class="form-control input_cheack" type="text" placeholder="DXB78036">
+							</div>
+							<div class="check_res">
+								<p class="check_res_row">设备类型：<span class="result">手机</span></p>
+								<p class="check_res_row">设备品牌：<span class="result">苹果</span></p>
+								<p class="check_res_row">设备型号：<span class="result">iPhone 6</span></p>
+								<p class="check_res_row">送修故障：<span class="result">不开机</span></p>
+								<p class="check_res_row">维修状态：<span class="result">已修复</span></p>
+								<p class="check_res_row">故障详情：<span class="result">进水引起不开机</span></p>
+								<p class="check_res_row">检修编号：<span class="result">0086</span></p>
+								<p class="check_res_row">保修期限：<span class="result">截止2016-10-8</span></p>
+								<p class="check_res_row">配送时间：<span class="result">10月8日下午20:00 送往寄修处</span></p>
+								<p class="check_res_row">寄修地点：<span class="result">city center jumboo</span></p>
+								<p class="check_res_row">寄修电话：<span class="result">04 8863356</span></p>
+								<p class="check_res_row">维修价格：<span class="result">380AED</span></p>
+								<p class="check_res_row">注意事项：<span class="result">下次进水时不要开机,及时送修,增加维修率节约成本</span></p>
+							</div>
+						</div>
+					</div>
+					<div class="tab_div">
+						<div class="business_login">
+							<div class="business_login_img">
+								<img src="images/business_login.png">
+							</div>
+							<div class="business_login_form">
+								<form>
+									<div class="form-group">
+							      <label for="TextInputname">用户名：</label>
+							      <input type="text" id="TextInputname" class="form-control input-lg" placeholder="">
+							    </div>
+							    <div class="form-group">
+							      <label for="TextInputpass">密码：</label>
+							      <input type="password" id="TextInputpass" class="form-control input-lg" placeholder="">
+							    </div>
+									<input type="submit" class="btn btn-default business_btn" value="登陆">
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="tab_div">
+						<div class="business_reg">
+							<form>
+								<div class="business_reg_form">
+									<div class="business_reg_form_input">
+										<label for="TextInputname">公司名：</label>
+							      <input type="text" id="TextInputname" class="form-control" placeholder="">
+							      <label for="TextInputname">申请人：</label>
+							      <input type="text" id="TextInputname" class="form-control" placeholder="">
+							      <label for="TextInputname">电话：</label>
+							      <input type="text" id="TextInputname" class="form-control" placeholder="">
+							      <label for="TextInputname">手机：</label>
+							      <input type="text" id="TextInputname" class="form-control" placeholder="">
+							      <label for="TextInputname">邮箱：</label>
+							      <input type="text" id="TextInputname" class="form-control" placeholder="">
+							    </div>
+									<div class="business_reg_form_textarea">
+										<label for="TextInputname">公司地址：</label>
+										<textarea class="form-control" rows="2"></textarea>
+										<label for="TextInputname">如何得知我们：</label>
+										<textarea class="form-control" rows="2"></textarea>
+										<label for="TextInputname">如何加入我们：</label>
+										<textarea class="form-control" rows="2"></textarea>
+										<input type="submit" class="btn btn-default business_btn" value="登陆">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+    <div class="w1142 detail">
+      <div class="service_title">服务流程</div>
+      <div class="process_tips">建议把故障的设备递交给我们的网店，假如附近没有网点，请电话预约（04-2211553）</div>
+      <div class="liucheng">
+        <img src="images/liuchegn.png">
+      </div>
+    </div>
+
+    <div class="w1142 detail">
+      <div class="service_title">维修报价</div>
+      <div class="tab" id="tab2">
+        <div class="tabList">
+          <ul>
+            <li class="cur">笔记本</li>
+            <li>手机</li>
+            <li>数据恢复</li>
+            <li>培训收费</li>
+            <li id="noright">官方声明</li>
+          </ul>
+        </div>
+
+        <div class="tabCon">
+          <div class="tab_div cur">
+            <table class="bijiben">
+            	<tr>
+            		<td class="row1">I系列</td>
+            		<td class="row2">双核</td>
+            		<td class="row3">特殊机型</td>
+            	</tr>
+            	<tr>
+            		<td>I3_340AED</td>
+            		<td rowspan="3">290AED</td>
+            		<td rowspan="3">苹果笔记本 一体机 游戏本</td>
+            	</tr>
+            	<tr>
+            		<td>I5_370AED</td>
+            	</tr>
+            	<tr>
+            		<td>I7_400AED</td>
+            		
+            	</tr>
+            	<tr>
+            		<td>接口故障</td>
+            		<td colspan="2">100AED</td>
+            	</tr>
+            </table>
+            <p class="tab_tips">注：上门取件需另收取30AED的服务费，服务网点收取免运费。</p>
+          </div>
+          <div class="tab_div">
+						<div class="mobile_title">手机报价查询</div>
+						<div class="mobile_result">报价：<span>300AED</span></div>
+						<div class="select_row">
+							<div class="col-md-3">
+								<p class="option_col_title">选择手机类型：</p>
+								<select class="form-control input-lg">
+								  <option>Android</option>
+								  <option>IOS</option>
+								  <option>blackberry os</option>
+								  <option>塞班</option>
+								  <option>微软</option>
+								</select>
+							</div>
+							<div class="col-md-3">
+								<p class="option_col_title">选择手机品牌：</p>
+								<select class="form-control input-lg">
+								  <option>Apple</option>
+								  <option>Sansung</option>
+								  <option>Huawei</option>
+								  <option>Xiaomi</option>
+								  <option>HTC</option>
+								  <option>Lenovo</option>
+								  <option>Sony</option>
+								  <option>Motorola</option>
+								</select>
+							</div>
+							<div class="col-md-3">
+								<p class="option_col_title">选择手机型号：</p>
+								<select class="form-control input-lg">
+								  <option>1</option>
+								  <option>2</option>
+								  <option>3</option>
+								  <option>4</option>
+								  <option>5</option>
+								</select>
+							</div>
+							<div class="col-md-3">
+								<p class="option_col_title">选择手机故障：</p>
+								<select class="form-control input-lg">
+								  <option>故障</option>
+								  <option>没信号</option>
+								  <option>进水</option>
+								  <option>碎屏</option>
+								  <option>不充电</option>
+								</select>
+							</div>
+						</div>
+          </div>
+          <div class="tab_div">
+          	<table class="bijiben">
+            	<tr>
+            		<td class="row4"></td>
+            		<td class="row5">手机恢复</td>
+            		<td class="row5">硬盘恢复</td>
+            		<td class="row5">FLASH恢复</td>
+            	</tr>
+            	<tr>
+            		<td>软恢复</td>
+            		<td>150AED</td>
+            		<td>150AED</td>
+            		<td>150AED</td>
+            	</tr>
+            	<tr>
+            		<td>硬恢复</td>
+            		<td>300AED</td>
+            		<td>300AED</td>
+            		<td>300AED</td>
+            	</tr>
+            	<tr>
+            		<td colspan="4">
+            			注意事项：我们无法保证100%的恢复率，具体恢复情况视损坏情况而定。一切数据恢复行为无法保障原界质不被损坏，数据恢复风险需用户自己承担。
+            		</td>
+            	</tr>
+            </table>
+            <p class="tab_tips">注：上门取件需另收取30AED的服务费，服务网点收取免运费。</p>
+          </div>
+          <div class="tab_div">
+          	<table class="bijiben">
+            	<tr>
+            		<td class="row4"></td>
+            		<td class="row5">笔记本维修培训</td>
+            		<td class="row5">手机维修培训</td>
+            		<td class="row5">工作安排</td>
+            	</tr>
+            	<tr>
+            		<td>一月</td>
+            		<td>2000AED</td>
+            		<td>2000AED</td>
+            		<td>工作自行安排</td>
+            	</tr>
+            	<tr>
+            		<td>三月</td>
+            		<td>500AED</td>
+            		<td>500AED</td>
+            		<td>保证3500	AED</td>
+            	</tr>
+            	<tr>
+            		<td>六月</td>
+            		<td>800AED</td>
+            		<td>800AED</td>
+            		<td>保证5000AED</td>
+            	</tr>
+            	<tr>
+            		<td colspan="4">
+            			注意事项：所有学员都要经过老师严格考核方可安排就业。
+            		</td>
+            	</tr>
+            </table>
+            <p class="tab_tips">注：上门取件需另收取30AED的服务费，服务网点收取免运费。</p>
+          </div>
+          <div class="tab_div">
+          	<div class="shengming_content">
+          		Huawei business formerly private communications department, accompanied by the company has been in existence for many years, before the main attention in railway, transportation, energy, radio and television industries, is also sold some of the communications network equipment, products such as optical network and router and the like, has been tepid, annual sales of about 50-60 billion yuan.
+							In 2010, the then chairman of the boss to estimate the business operators may have peaked, terminal business has always wanted to sell to, due to various reasons and momentary half will not sell, the then chairman of the boss think terminal business also can not afford to support the banner of Huawei's growth. So, in 2010 for HUAWEI enterprise business is an important watershed, HUAWEI is determined to become bigger and enterprise business.
+							At that time Huawei to Chinese area network marketing for the team, began to build the business department. In fact, at that time, Huawei has no one knows how to do business, indistinct feel the and operator direct marketing is not the same, need an agent, but agent of division of labor and in what place did not know. Since no one knows, the easiest way is to dig people, there are two types of people can dig: a type of HUAWEI insiders, always want to know the point of business; the other is outside the company, such as CISCO, IBM and HP experts.
+							In 2010, the then chairman of the boss to estimate the business operators may have peaked, terminal business has always wanted to sell to, due to various reasons and momentary half will not sell, the then chairman of the boss think terminal business also can not afford to support the banner of Huawei's growth. So, in 2010 for HUAWEI enterprise business is an important watershed, HUAWEI is determined to become bigger and enterprise business.
+							At that time Huawei to Chinese area network marketing for the team, began to build the business department. In fact, at that time, Huawei has no one knows how to do business, indistinct feel the and operator direct marketing is not the same, need an agent, but agent of division of labor and in what place did not know. Since no one knows, the easiest way is to dig people, there are two types of people can dig: a type of HUAWEI insiders, always want to know the point of business; the other is outside the company, such as CISCO, IBM and HP experts.
+          	</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+	
+    <div class="w1222 hot_goods">
+    	<div class="service_title">热卖商品</div>
+    	<div class="tabs-con">
+    		<div class="slide-box1">
+    			<div class="hd" id="tab-completelook">
+    				<ul>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty_1"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									$('.raty_1').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    				</ul>
+    			</div>
+    			<div class="bd">
+    				<a class="prev" href="javascript:void (0)"></a>
+    				<a class="next" href="javascript:void (0)"></a>
+    			</div>
+    		</div>
+			</div>
+    </div>
+    <div class="w1222">
+    	<div class="tabs-con">
+    		<div class="slide-box1">
+    			<div class="hd" id="tab-completelook">
+    				<ul>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty_1"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									$('.raty_1').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    				</ul>
+    			</div>
+    			<div class="bd">
+    				<a class="prev" href="javascript:void (0)"></a>
+    				<a class="next" href="javascript:void (0)"></a>
+    			</div>
+    		</div>
+			</div>
+    </div>
+	<script type="text/javascript">
+		jQuery(".slide-box1").slide({titCell:".bd ul",mainCell:".hd ul",autoPage:true,effect:"leftLoop",autoPlay:false,vis:5});
+		jQuery(".slide-box2").slide({titCell:".bd ul",mainCell:".hd ul",autoPage:true,effect:"leftLoop",autoPlay:false,vis:5});
+	</script>
+</div>
+
+
+
+	<div class="w1360 footer">
+		<div class="w1142 footer_main">
+			<div class="footer_element footer_contact">
+				<p class="footer_contact_title">联系方式</p>
+				<p class="footer_contact_content">doctorconputer@999fix.com</p>
+				<p class="footer_contact_content">04-2211553</p>
+				<p class="footer_contact_content">IT Center shop33#</p>
+				<p class="footer_contact_content">301 3nd Floor，Sh Rashid Build</p>
+			</div>
+			<div class="footer_element foot_share">
+				<div class="foot_share_logo">
+					<a href=""><img src="images/index_95.png" alt=""></a>
+					<a href=""><img src="images/index_97.png" alt=""></a>
+					<a href=""><img src="images/index_92.png" alt=""></a>
+				</div>
+				<img class="foot_star" src="images/index_105.png" alt="">
+			</div>
+			<div class="footer_element oot_copyright noright">
+				<div class="foot_my_logo">
+					<img src="images/index_91.png" alt="">
+				</div>
+				<p class="tdis_site"><a href="./">www.999fix.com</a></p>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

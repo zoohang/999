@@ -1,0 +1,710 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{dede:global.cfg_webname/}</title>
+<meta name="description" content="{dede:global.cfg_description/}" />
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<meta http-equiv="mobile-agent" content="format=xhtml;url={dede:global.cfg_mobileurl/}/index.php">
+<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/css/swiper.min.css">
+<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/css/bootstrap.css">
+<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/css/main.css">
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/js/jquery1.42.min.js"></script>
+<script src="{dede:global.cfg_templets_skin/}/js/jquery.superslide.2.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/js/jquery.raty.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/js/swiper.min.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/js/main.js"></script>
+	<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/js/GlobalProvinces_main.js" charset="utf-8"></script>
+	<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/js/GlobalProvinces_extend.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		/* 省、地区、县市、街道四级联动下拉列表
+		*
+		*	作者：王银平
+		*/
+
+
+		//省、地区、市县、街道四级联动下拉列表，初始只有前3个，只有当前3个都选中，并且存在街道列表的时候才显示第4级下拉列表
+		$(document).ready(function(){init();sel();});
+		function init(){
+			//初始化 省份下拉列表里面列出所有可选省份，地区下拉列表清空，市县下拉列表清空
+			$("#sheng").empty();
+			$("<option value=\"0\">选择设备类型</option>").appendTo($("#sheng"));
+			$.each(GP,function(n,ele){
+					$("<option value="+ele+">"+ele+"</option>").appendTo($("#sheng"));
+				}
+			);
+			
+			//清空地区下拉列表
+			$("#shi").empty();
+			$("<option value=\"0\">选择设备品牌</option>").appendTo($("#shi"));
+
+			//清空市县下拉列表
+			$("#qu").empty();
+			$("<option value=\"0\">选择设备型号</option>").appendTo($("#qu"));
+
+			//清空镇下拉列表
+			$("#zhen").empty();
+			$("<option value=\"0\">选择故障类型</option>").appendTo($("#zhen"));
+
+			//如果有街道列表则删除，因为此时还没有必要显示街道列表
+			/*if($("#zhen").length > 0)
+				$("#zhen").remove();*/
+		}
+		function sel(){
+			//省份下拉列表改变的时候调用的方法，此时联动把地区内容显示到地区下拉列表中
+			$("#sheng").change(
+				function(){
+					
+					//把数组中的地区数据显示到地区列表中
+					$("#shi").empty();
+					$("<option value=\"0\">选择设备品牌</option>").appendTo($("#shi"));
+					$.each(GC1[$("#sheng option:selected").html()],function(n,ele){
+							$("<option value="+ele+">"+ele+"</option>").appendTo($("#shi"));
+						}
+					);
+
+					//清空县市下拉列表
+					$("#qu").empty();
+					$("<option value=\"0\">选择设备型号</option>").appendTo($("#qu"));
+
+					//清空县市下拉列表
+					$("#zhen").empty();
+					$("<option value=\"0\">选择故障类型</option>").appendTo($("#zhen"));
+
+					//如果有街道列表则删除，因为此时还没有必要显示街道列表
+					/*if($("#zhen").length > 0)
+							$("#zhen").remove();*/
+				}
+			);
+
+			//地区下拉列表改变的时候调用的方法，此时联动把县市内容显示到下拉列表中
+			$("#shi").change(
+				function(){
+					//把数组中的县市数据追加到列表中
+					$("#qu").empty();
+					$("#zhen").empty();
+					$("<option value=\"0\">选择设备型号</option>").appendTo($("#qu"));
+					$.each(GC2[$("#sheng option:selected").html()][$("#shi option:selected").html()],function(n,ele){
+							$("<option value="+ele+">"+ele+"</option>").appendTo($("#qu"));
+						}
+					);
+					$("<option value=\"0\">选择故障类型</option>").appendTo($("#zhen"));
+					
+					
+					//如果有街道列表则删除，因为此时还没有必要显示街道列表
+					/*if($("#zhen").length > 0)
+							$("#zhen").remove();*/
+				}
+			);
+
+			//县市下拉列表改变的时候调用的方法，此时判断是否有街道信息，有点话则显示街道下拉列表框并显示内容
+			$("#qu").change(
+				function(){
+					
+					//根据选择的省、地区、县市信息判断是否有街道信息，有点话则显示街道下拉列表并显示其内容
+					if(GC3[$("#sheng option:selected").html()] && 
+						GC3[$("#sheng option:selected").html()][$("#shi option:selected").html()] &&
+						GC3[$("#sheng option:selected").html()][$("#shi option:selected").html()][$("#qu option:selected").html()]){
+						
+						/*if($("#zhen").length > 0)
+							$("#zhen").remove();
+						$("<select id=\"zhen\" name=\"zhen\"><option value=\"0\">选择故障类型</option></select>").appendTo($("#city"));*/
+						$("#zhen").empty();
+						$("<option value=\"0\">选择故障类型</option>").appendTo($("#zhen"));
+						$.each(GC3[$("#sheng option:selected").html()][$("#shi option:selected").html()][$("#qu option:selected").html()],function(n,ele){
+								$("<option value="+ele+">"+ele+"</option>").appendTo($("#zhen"));
+							}
+						);
+					}else{
+						/*if($("#zhen").length > 0)
+							$("#zhen").remove();*/
+						$("#zhen").empty();
+						$("<option value=\"0\">选择故障类型</option>").appendTo($("#zhen"));
+					}
+				}
+			);
+		}
+	</script>
+</head>
+<body>
+{dede:include filename="head.htm"/}
+<!-- /header -->
+
+	<div class="w1366">
+
+		<div class="w1142 detail">
+			<div class="service_title">导航目录</div>
+			<div class="tab" id="tab">
+				<div class="tabList">
+					<ul>
+						<li class="cur">网点</li>
+						<li>提交订单</li>
+						<li>单号查询</li>
+						<li>经销商登陆</li>
+						<li id="noright">经销商申</li>
+					</ul>
+				</div>
+
+				<div class="tabCon">
+					<div class="tab_div cur">
+            <img src="{dede:global.cfg_templets_skin/}/images/google_map.png">     
+          </div>
+					<div class="tab_div">
+						<div class="xiadan">
+						<form action="{dede:global.cfg_basehost/}/plus/diy.php" enctype="multipart/form-data" method="post">
+						<input type="hidden" name="action" value="post" />
+						<input type="hidden" name="diyid" value="2" />
+						<input type="hidden" name="do" value="2" />
+							<div class="xiadan_baojia">报价：<span>300AED</span></div>
+							
+							<div class="select_group" id="city">
+								<div class="select_group_row">
+									<label for="TextInputname">选择设备类型：</label>
+								  <select class="form-control input-lg" id="sheng">
+									  <option>手机</option>
+									  <option>笔记本</option>
+									  <option>平板</option>
+									  <option>存储介质</option>
+									  <option>其他</option>
+									</select>
+									<input type='text' name='type' id='type' style='width:250px'  class='intxt' value='' />
+								</div>
+								<div class="select_group_row">
+									<label for="TextInputname">选择设备品牌：</label>
+								  <select class="form-control input-lg" id="shi">
+									  <option>手机</option>
+									  <option>笔记本</option>
+									  <option>平板</option>
+									  <option>存储介质</option>
+									  <option>其他</option>
+									</select>
+									<input type='text' name='brand' id='brand' style='width:250px'  class='intxt' value='' />
+								</div>
+								<div class="select_group_row">
+									<label for="TextInputname">选择设备型号：</label>
+								  <select class="form-control input-lg" id="qu">
+									  <option>手机</option>
+									  <option>笔记本</option>
+									  <option>平板</option>
+									  <option>存储介质</option>
+									  <option>其他</option>
+									</select>
+									<input type='text' name='model' id='model' style='width:250px'  class='intxt' value='' />
+								</div>
+								<div class="select_group_row">
+									<label for="TextInputname">选择设备故障：</label>
+								  <select class="form-control input-lg" id="zhen">
+									  <option>手机</option>
+									  <option>笔记本</option>
+									  <option>平板</option>
+									  <option>存储介质</option>
+									  <option>其他</option>
+									</select>
+									<input type='text' name='fault' id='fault' style='width:250px'  class='intxt' value='' />
+								</div>
+							</div>
+							<script type="text/javascript">
+								$('#city select').change(function () {
+									var val = $(this).val();
+									alert(val);
+									//if(val == 0 || val == '') val = '';
+									$(this).next('input').val(val);
+								});
+							</script>
+							<div class="xiadan_userinfo">
+								<div class="xiadan_userinfo_row">
+									<label>联系信息：</label><br>	
+									<div class="form-group">
+								    <label for="name" class="col-sm-3 control-label">Name：</label>
+								    <div class="col-sm-9">
+								      <input type="text" class="form-control" name='name' id='name' placeholder="username">
+								    </div>
+								  </div>
+									<div class="form-group">
+								    <label for="email" class="col-sm-3 control-label">Email：</label>
+								    <div class="col-sm-9">
+								      <input type="text" class="form-control" name='email' id='email' placeholder="email">
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <label for="number" class="col-sm-3 control-label">Number：</label>
+								    <div class="col-sm-9">
+								      <input type="text" class="form-control" name='number' id='number' placeholder="phone number">
+								    </div>
+								  </div>
+								</div>
+								<div class="xiadan_userinfo_row">
+									<label for="TextInputname">联系地址：</label>
+									<textarea class="form-control" name='address' id='address' rows="2"></textarea>
+								</div>
+								<div class="xiadan_userinfo_row">
+									<label for="TextInputname">故障描述：</label>
+									<textarea class="form-control" name='description' id='description' rows="2"></textarea>
+								</div>
+							</div>
+							<input type="hidden" name="dede_fields" value="type,text;brand,text;model,text;fault,text;name,text;email,text;number,text;address,multitext;description,multitext" />
+							<input type="hidden" name="dede_fieldshash" value="ef12517af3226466cbc2573ab8a0399a" />
+							<input type="submit" class="btn btn-default business_btn" value="确认提交">
+						</form>
+						</div>
+					</div>
+					<div class="tab_div">
+						<div class="order_check">
+							<div class="check_logo"><img src="{dede:global.cfg_templets_skin/}/images/index_03.png"></div>
+							<div class="input_grounp">
+								<div class="input_tips">
+									<p class="input_tips_lg">查询</p>
+									<p class="input_tips_sm">输入单号</p>
+								</div>
+								<input class="form-control input_cheack" type="text" placeholder="DXB78036">
+							</div>
+							<div class="check_res">
+								<p class="check_res_row">设备类型：<span class="result">手机</span></p>
+								<p class="check_res_row">设备品牌：<span class="result">苹果</span></p>
+								<p class="check_res_row">设备型号：<span class="result">iPhone 6</span></p>
+								<p class="check_res_row">送修故障：<span class="result">不开机</span></p>
+								<p class="check_res_row">维修状态：<span class="result">已修复</span></p>
+								<p class="check_res_row">故障详情：<span class="result">进水引起不开机</span></p>
+								<p class="check_res_row">检修编号：<span class="result">0086</span></p>
+								<p class="check_res_row">保修期限：<span class="result">截止2016-10-8</span></p>
+								<p class="check_res_row">配送时间：<span class="result">10月8日下午20:00 送往寄修处</span></p>
+								<p class="check_res_row">寄修地点：<span class="result">city center jumboo</span></p>
+								<p class="check_res_row">寄修电话：<span class="result">04 8863356</span></p>
+								<p class="check_res_row">维修价格：<span class="result">380AED</span></p>
+								<p class="check_res_row">注意事项：<span class="result">下次进水时不要开机,及时送修,增加维修率节约成本</span></p>
+							</div>
+						</div>
+					</div>
+					<div class="tab_div">
+						<div class="business_login">
+							<div class="business_login_img">
+								<img src="{dede:global.cfg_templets_skin/}/images/business_login.png">
+							</div>
+							<div class="business_login_form">
+								<form>
+									<div class="form-group">
+							      <label for="TextInputname">用户名：</label>
+							      <input type="text"  class="form-control input-lg" placeholder="">
+							    </div>
+							    <div class="form-group">
+							      <label for="TextInputpass">密码：</label>
+							      <input type="password" id="TextInputpass" class="form-control input-lg" placeholder="">
+							    </div>
+									<input type="submit" class="btn btn-default business_btn" value="登陆">
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="tab_div">
+						<div class="business_reg">
+							<form action="{dede:global.cfg_basehost/}/plus/diy.php" enctype="multipart/form-data" method="post">
+								<input type="hidden" name="action" value="post" />
+								<input type="hidden" name="diyid" value="1" />
+								<input type="hidden" name="do" value="2" />
+								<div class="business_reg_form">
+									<div class="business_reg_form_input">
+										<label for="company">公司名：</label>
+							      <input type="text" name='company' id='company'  class="form-control" placeholder="">
+							      <label for="name">申人：</label>
+							      <input type="text" name='name' id='name'  class="form-control" placeholder="">
+							      <label for="telephone">电话：</label>
+							      <input type="text"  name='telephone' id='telephone' class="form-control" placeholder="">
+							      <label for="cellphone">手机：</label>
+							      <input type="text" name='cellphone' id='cellphone' class="form-control" placeholder="">
+							      <label for="email">邮箱：</label>
+							      <input type="text" name='email' id='email' class="form-control" placeholder="">
+							    </div>
+									<div class="business_reg_form_textarea">
+										<label for="address">公司地址：</label>
+										<textarea name='address' id='address' class="form-control" rows="2"></textarea>
+										<label for="knowus">如何得知我们：</label>
+										<textarea name='knowus' id='knowus' class="form-control" rows="2"></textarea>
+										<label for="joinus">如何加入我们：</label>
+										<textarea name='joinus' id='joinus' class="form-control" rows="2"></textarea>
+
+										<input type="hidden" name="dede_fields" value="company,text;name,text;telephone,textchar;cellphone,text;email,text;address,multitext;knowus,multitext;joinus,multitext" />
+										<input type="hidden" name="dede_fieldshash" value="6acd8f0b5aed1fff502b0016365a9724" />
+
+										<input type="submit" class="btn btn-default business_btn" value="提交">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+    <div class="w1142 detail">
+      <div class="service_title">服务流程</div>
+      <div class="process_tips">建议把故障的设备递交给我们的网店，假如附近没有网点，电话预约（04-2211553）</div>
+      <div class="liucheng">
+        <img src="{dede:global.cfg_templets_skin/}/images/liuchegn.png">
+      </div>
+    </div>
+
+    <div class="w1142 detail">
+      <div class="service_title">维修报价</div>
+      <div class="tab" id="tab2">
+        <div class="tabList">
+          <ul>
+            <li class="cur">笔记本</li>
+            <li>手机</li>
+            <li>数据恢复</li>
+            <li>培训收费</li>
+            <li id="noright">官方声明</li>
+          </ul>
+        </div>
+
+        <div class="tabCon">
+          <div class="tab_div cur">
+            <table class="bijiben">
+            	<tr>
+            		<td class="row1">I系列</td>
+            		<td class="row2">双核</td>
+            		<td class="row3">特殊机型</td>
+            	</tr>
+            	<tr>
+            		<td>I3_340AED</td>
+            		<td rowspan="3">290AED</td>
+            		<td rowspan="3">苹果笔记本 一体机 游戏本</td>
+            	</tr>
+            	<tr>
+            		<td>I5_370AED</td>
+            	</tr>
+            	<tr>
+            		<td>I7_400AED</td>
+            		
+            	</tr>
+            	<tr>
+            		<td>接口故障</td>
+            		<td colspan="2">100AED</td>
+            	</tr>
+            </table>
+            <p class="tab_tips">注：上门取件需另收取30AED的服务费，服务网点收取免运费。</p>
+          </div>
+          <div class="tab_div">
+						<div class="mobile_title">手机报价查询</div>
+						<div class="mobile_result">报价：<span>300AED</span></div>
+						<div class="select_row">
+							<div class="col-md-3">
+								<p class="option_col_title">选择手机类型：</p>
+								<select class="form-control input-lg">
+								  <option>Android</option>
+								  <option>IOS</option>
+								  <option>blackberry os</option>
+								  <option>塞班</option>
+								  <option>微软</option>
+								</select>
+							</div>
+							<div class="col-md-3">
+								<p class="option_col_title">选择手机品牌：</p>
+								<select class="form-control input-lg">
+								  <option>Apple</option>
+								  <option>Sansung</option>
+								  <option>Huawei</option>
+								  <option>Xiaomi</option>
+								  <option>HTC</option>
+								  <option>Lenovo</option>
+								  <option>Sony</option>
+								  <option>Motorola</option>
+								</select>
+							</div>
+							<div class="col-md-3">
+								<p class="option_col_title">选择手机型号：</p>
+								<select class="form-control input-lg">
+								  <option>1</option>
+								  <option>2</option>
+								  <option>3</option>
+								  <option>4</option>
+								  <option>5</option>
+								</select>
+							</div>
+							<div class="col-md-3">
+								<p class="option_col_title">选择手机故障：</p>
+								<select class="form-control input-lg">
+								  <option>故障</option>
+								  <option>没信号</option>
+								  <option>进水</option>
+								  <option>碎屏</option>
+								  <option>不充电</option>
+								</select>
+							</div>
+						</div>
+          </div>
+          <div class="tab_div">
+          	<table class="bijiben">
+            	<tr>
+            		<td class="row4"></td>
+            		<td class="row5">手机恢复</td>
+            		<td class="row5">硬盘恢复</td>
+            		<td class="row5">FLASH恢复</td>
+            	</tr>
+            	<tr>
+            		<td>软恢复</td>
+            		<td>150AED</td>
+            		<td>150AED</td>
+            		<td>150AED</td>
+            	</tr>
+            	<tr>
+            		<td>硬恢复</td>
+            		<td>300AED</td>
+            		<td>300AED</td>
+            		<td>300AED</td>
+            	</tr>
+            	<tr>
+            		<td colspan="4">
+            			注意事项：我们无法保证100%的恢复率，具体恢复情况视损坏情况而定。一切数据恢复行为无法保障原界质不被损坏，数据恢复风险需用户自己承担。
+            		</td>
+            	</tr>
+            </table>
+            <p class="tab_tips">注：上门取件需另收取30AED的服务费，服务网点收取免运费。</p>
+          </div>
+          <div class="tab_div">
+          	<table class="bijiben">
+            	<tr>
+            		<td class="row4"></td>
+            		<td class="row5">笔记本维修培训</td>
+            		<td class="row5">手机维修培训</td>
+            		<td class="row5">工作安排</td>
+            	</tr>
+            	<tr>
+            		<td>一月</td>
+            		<td>2000AED</td>
+            		<td>2000AED</td>
+            		<td>工作自行安排</td>
+            	</tr>
+            	<tr>
+            		<td>三月</td>
+            		<td>500AED</td>
+            		<td>500AED</td>
+            		<td>保证3500	AED</td>
+            	</tr>
+            	<tr>
+            		<td>六月</td>
+            		<td>800AED</td>
+            		<td>800AED</td>
+            		<td>保证5000AED</td>
+            	</tr>
+            	<tr>
+            		<td colspan="4">
+            			注意事项：所有学员都要经过老师严格考核方可安排就业。
+            		</td>
+            	</tr>
+            </table>
+            <p class="tab_tips">注：上门取件需另收取30AED的服务费，服务网点收取免运费。</p>
+          </div>
+          <div class="tab_div">
+          	<div class="shengming_content">
+          		Huawei business formerly private communications department, accompanied by the company has been in existence for many years, before the main attention in railway, transportation, energy, radio and television industries, is also sold some of the communications network equipment, products such as optical network and router and the like, has been tepid, annual sales of about 50-60 billion yuan.
+							In 2010, the then chairman of the boss to estimate the business operators may have peaked, terminal business has always wanted to sell to, due to various reasons and momentary half will not sell, the then chairman of the boss think terminal business also can not afford to support the banner of Huawei's growth. So, in 2010 for HUAWEI enterprise business is an important watershed, HUAWEI is determined to become bigger and enterprise business.
+							At that time Huawei to Chinese area network marketing for the team, began to build the business department. In fact, at that time, Huawei has no one knows how to do business, indistinct feel the and operator direct marketing is not the same, need an agent, but agent of division of labor and in what place did not know. Since no one knows, the easiest way is to dig people, there are two types of people can dig: a type of HUAWEI insiders, always want to know the point of business; the other is outside the company, such as CISCO, IBM and HP experts.
+							In 2010, the then chairman of the boss to estimate the business operators may have peaked, terminal business has always wanted to sell to, due to various reasons and momentary half will not sell, the then chairman of the boss think terminal business also can not afford to support the banner of Huawei's growth. So, in 2010 for HUAWEI enterprise business is an important watershed, HUAWEI is determined to become bigger and enterprise business.
+							At that time Huawei to Chinese area network marketing for the team, began to build the business department. In fact, at that time, Huawei has no one knows how to do business, indistinct feel the and operator direct marketing is not the same, need an agent, but agent of division of labor and in what place did not know. Since no one knows, the easiest way is to dig people, there are two types of people can dig: a type of HUAWEI insiders, always want to know the point of business; the other is outside the company, such as CISCO, IBM and HP experts.
+          	</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+	
+    <div class="w1222 hot_goods">
+    	<div class="service_title">热卖商品</div>
+    	<div class="tabs-con">
+    		<div class="slide-box1">
+    			<div class="hd" id="tab-completelook">
+    				<ul>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="{dede:global.cfg_templets_skin/}/images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty_1"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									$('.raty_1').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="{dede:global.cfg_templets_skin/}/images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="{dede:global.cfg_templets_skin/}/images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="{dede:global.cfg_templets_skin/}/images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="{dede:global.cfg_templets_skin/}/images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    				</ul>
+    			</div>
+    			<div class="bd">
+    				<a class="prev" href="javascript:void (0)"></a>
+    				<a class="next" href="javascript:void (0)"></a>
+    			</div>
+    		</div>
+			</div>
+    </div>
+    <div class="w1222">
+    	<div class="tabs-con">
+    		<div class="slide-box1">
+    			<div class="hd" id="tab-completelook">
+    				<ul>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="{dede:global.cfg_templets_skin/}/images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty_1"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									$('.raty_1').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="{dede:global.cfg_templets_skin/}/images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="{dede:global.cfg_templets_skin/}/images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="{dede:global.cfg_templets_skin/}/images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    					<li>
+    						<div class="pro-main">
+    							<div class="pic">
+    								<a href="#"><img src="{dede:global.cfg_templets_skin/}/images/goods_08-04.png"></a>
+    								<div class="protitle">
+	    								<p class="goods_title"><a href="#">Dotia rulamsfrakke Dotia rulamsfrakke</a></p>
+	    								<p class="star raty"></p>
+	    									<span class="comment_num">(16)</span>
+	    								<script type="text/javascript">
+	    									//$('.raty').raty({ readOnly: true, score: 3 });
+	    								</script>
+	    								<p class="goods_price"><span class="price_style">131.999</span> AED</p>
+	    							</div>
+    							</div>	
+    						</div>
+    					</li>
+    				</ul>
+    			</div>
+    			<div class="bd">
+    				<a class="prev" href="javascript:void (0)"></a>
+    				<a class="next" href="javascript:void (0)"></a>
+    			</div>
+    		</div>
+			</div>
+    </div>
+	<script type="text/javascript">
+		jQuery(".slide-box1").slide({titCell:".bd ul",mainCell:".hd ul",autoPage:true,effect:"leftLoop",autoPlay:false,vis:5});
+		jQuery(".slide-box2").slide({titCell:".bd ul",mainCell:".hd ul",autoPage:true,effect:"leftLoop",autoPlay:false,vis:5});
+	</script>
+</div>
+
+{dede:include filename="footer.htm"/}
+<!-- /footer -->
+</body>
+</html>

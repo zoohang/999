@@ -1,0 +1,64 @@
+	<div class="w1360 footer">
+		<div class="w1142 footer_main">
+			<div class="footer_element footer_contact">
+				<p class="footer_contact_title">联系方式</p>
+				<p class="footer_contact_content">doctorconputer@999fix.com</p>
+				<p class="footer_contact_content">04-2211553</p>
+				<p class="footer_contact_content">IT Center shop33#</p>
+				<p class="footer_contact_content">301 3nd Floor，Sh Rashid Build</p>
+			</div>
+			<div class="footer_element foot_share">
+				<div class="foot_share_logo">
+					<a href=""><img src="{dede:global.cfg_templets_skin/}/images/index_95.png" alt=""></a>
+					<a href=""><img src="{dede:global.cfg_templets_skin/}/images/index_97.png" alt=""></a>
+					<a href=""><img src="{dede:global.cfg_templets_skin/}/images/index_92.png" alt=""></a>
+				</div>
+				<img class="foot_star" src="{dede:global.cfg_templets_skin/}/images/index_105.png" alt="">
+			</div>
+			<div class="footer_element oot_copyright noright">
+				<div class="foot_my_logo">
+					<img src="{dede:global.cfg_templets_skin/}/images/index_91.png" alt="">
+				</div>
+				<p class="this_site"><a href="./">www.999fix.com</a></p>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var swiper = new Swiper('.swiper-container', {
+        //pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        slidesPerView: 5,
+        centeredSlides: true,
+        paginationClickable: true,
+        spaceBetween: 0,
+        loop : true,
+        setWrapperSize :true,
+        //autoplay: 2500,
+    });
+
+    
+    var swiper = new Swiper('.swiper-container2', {
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        slidesPerView: 4,
+        paginationClickable: true,
+        spaceBetween: 0,
+        loop : true,
+        setWrapperSize :true,
+    });
+    
+	</script>
+	<script type="text/javascript">
+		$('.order_btn').hover(function () {
+			$(this).children('.order_option').show();
+		}, function () {
+			$(this).children('.order_option').hide();
+		});
+		$('.option_row').click(function () {
+			var select = $(this).text();
+			$(this).parent().css('display','none');
+			$(this).parent('.order_option').siblings('span').text(select);
+		});
+	</script>
